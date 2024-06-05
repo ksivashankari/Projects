@@ -15,7 +15,7 @@ void timer_delay(unsigned int x,y);
 void main()
 {
 	lcd_data=0x00;
-  lcd_init();
+        lcd_init();
 	IR_sensor = 0xFF;
 	Servo1 = 0x00;
 	Servo2 = 0x00;
@@ -23,9 +23,9 @@ void main()
 	{
 		if(IR_sensor == 0)
 		{	
-			cmd(0x80);
-      show("Door Opened");
-			Servo1 = 1;
+	          cmd(0x80);
+                  show("Door Opened");
+		  Servo1 = 1;
 		  timer_delay(0xFC,0xB5);
 		  Servo1 = 0;
 		  Servo2 = 1;
@@ -35,12 +35,12 @@ void main()
 		}
 		else
 		{
-			cmd(0x80);
-      show("Door closed");
-			Servo1 = 1;
+		  cmd(0x80);
+                  show("Door closed");
+		  Servo1 = 1;
 		  timer_delay(0xF8,0xCD);
 		  Servo1 = 0;
-			Servo2 = 1;
+		  Servo2 = 1;
 		  timer_delay(0xFC,0xB5);
 		  Servo2 = 0;
 		  delay(1000);
