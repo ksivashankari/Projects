@@ -78,6 +78,7 @@ void main()
 	    cmd(0x01);
 	    cmd(0x80);
 	    show("WELCOME HOME");
+	    __delay_ms(5000);
 	
 	    //Door Close
 	    cmd(0x01);
