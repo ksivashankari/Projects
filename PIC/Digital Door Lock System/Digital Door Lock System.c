@@ -36,69 +36,69 @@ unsigned char z;
 
 void main()
 {
-    char password[5] = "123*";
-	  char Entered_Password[5];
+    char password[5] = "123*"; 
+    char Entered_Password[5];
     TRISB=0x00;
     TRISC=0x00;
     TRISD=0x0f;
     lcd=0x00;
     lcd_init();
     cmd(0x80);
-   	show("DIGITAL DOOR");
-	  cmd(0xc0);
-	  show("LOCK SYSTEM");
-  	__delay_ms(5000);
-  	cmd(0x01);
-	  cmd(0x80);
-	  show("TO UNLOCK DOOR");
-	  cmd(0xc0);
-	  show("Enter Password");
-	  __delay_ms(3500);
-	  cmd(0x01);
-	  cmd(0x80);
-  	show("PASSWORD-");
+    show("DIGITAL DOOR");
+    cmd(0xc0);
+    show("LOCK SYSTEM");
+    __delay_ms(5000);
+    cmd(0x01);
+    cmd(0x80);
+    show("TO UNLOCK DOOR");
+    cmd(0xc0);
+    show("Enter Password");
+    __delay_ms(3500);
+    cmd(0x01);
+    cmd(0x80);
+    show("PASSWORD-");
     while(1)
     {
         for(z=0;z<4;z++)
-		    {
+	{
           Entered_Password[z] = keypad();
-		    }
-	     	Entered_Password[4] = '\0';
-	     	__delay_ms(1000);
-	    	if ((strcmp(password, Entered_Password)) == 0)
-	    	{
+	}
+	Entered_Password[4] = '\0';
+	__delay_ms(1000);
+	if ((strcmp(password, Entered_Password)) == 0)
+    	{
             //Door Open
-			      cmd(0x01);
-		        cmd(0x80);
-		        show("DOOR OPENED");
-		        motor=1;
+            cmd(0x01);
+	    cmd(0x80);
+	    show("DOOR OPENED");
+	    motor=1;
             __delay_ms(2);
             motor=0;
             __delay_ms(1500);
-			      cmd(0x01);
-			      cmd(0x80);
-			      show("WELCOME HOME");
-		
-			      //Door Close
-			      cmd(0x01);
+	    cmd(0x01);
+	    cmd(0x80);
+	    show("WELCOME HOME");
+	
+	    //Door Close
+	    cmd(0x01);
             cmd(0x80);
             show("DOOR CLOSED");
             motor=1;
             __delay_ms(1);
             motor=0;
             __delay_ms(1500);
-	    	}
-	     	else
-	    	{
+	 }
+	 else
+	 {
             cmd(0x80);
-		        show("WRONG PASSWORD");
-			      cmd(0xc0);
-			      show("TRY AGAIN");
-			      __delay_ms(3500);
-			      cmd(0x01);
-			      cmd(0x80);
-	          show("PASSWORD-");
-		    }
+	    show("WRONG PASSWORD");
+	    cmd(0xc0);
+	    show("TRY AGAIN");
+	    __delay_ms(3500);
+	    cmd(0x01);
+	    cmd(0x80);
+	    show("PASSWORD-");
+	 }
     }
 }
 
