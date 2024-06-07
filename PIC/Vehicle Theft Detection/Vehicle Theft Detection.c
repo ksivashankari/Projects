@@ -29,6 +29,7 @@ int Engine_Lock = 0;
 
 void GSM_init();
 void SMS();
+void Engine_Stoped_SMS();
 
 void main()
 {
@@ -70,6 +71,7 @@ void main()
             if(rx_cmd == 'S')
             {
                 Engine_stops();
+                Engine_Stoped_SMS();
             }
         }
         else 
@@ -109,4 +111,15 @@ void SMS()
     __delay_ms(1000);
 }
 
-
+void Engine_Stoped_SMS()
+{
+    tx_string("\r\nAT+CMGF=1\r\n"); // Set SMS to text mode
+    __delay_ms(2000);
+    tx_string("AT+CMGS=\"" USER_NUM "\"\r\n"); // Set recipient phone number
+    __delay_ms(2000);
+    cmd(0xc0);
+    tx_string("Engine Stoped\r\n"); // Set SMS text
+    __delay_ms(2000);
+    tx(26); // ASCII code of CTRL+Z to send the SMS
+    __delay_ms(1000);
+}
