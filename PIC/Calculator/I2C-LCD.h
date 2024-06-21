@@ -15,7 +15,7 @@
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
 
-#include <xc.h>  // Include the header file for your PIC microcontroller
+#include <xc.h>  
 #define _XTAL_FREQ 20000000  // Define your oscillator frequency, change according to your setup
 
 void I2C_init();
